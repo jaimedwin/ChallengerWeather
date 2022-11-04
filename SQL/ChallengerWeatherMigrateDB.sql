@@ -13,9 +13,9 @@ GO
 CREATE TABLE [dbo].[User]
 (
 	[ID]			[bigint] NOT NULL IDENTITY(1, 1),
-	[Username] 	    [nvarchar] (100) NOT NULL,
+	[Username] 	    [nvarchar] (100) UNIQUE NOT NULL,
 	[Password]		[nvarchar] (100) NOT NULL,
-	[Email]			[varchar] (320) NOT NULL,
+	[Email]			[varchar] (320) UNIQUE NOT NULL,
 	CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED([ID] ASC)WITH (
 	    PAD_INDEX = OFF,
 	    STATISTICS_NORECOMPUTE = OFF,
