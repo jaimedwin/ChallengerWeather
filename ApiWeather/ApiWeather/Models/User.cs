@@ -9,12 +9,6 @@ namespace ApiWeather.Models
     [Table("User")]
     public partial class User
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
-        {
-            //Weather = new HashSet<Weather>();
-        }
-
         public long ID { get; set; }
 
         [Required]
@@ -28,8 +22,5 @@ namespace ApiWeather.Models
         [Required]
         [StringLength(320)]
         public string Email { get; set; }
-
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<Weather> Weather { get; set; }
     }
 }

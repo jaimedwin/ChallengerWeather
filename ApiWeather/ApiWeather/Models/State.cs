@@ -9,12 +9,6 @@ namespace ApiWeather.Models
     [Table("State")]
     public partial class State
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public State()
-        {
-            //City = new HashSet<City>();
-        }
-
         public int ID { get; set; }
 
         [Required]
@@ -22,9 +16,6 @@ namespace ApiWeather.Models
         public string Name { get; set; }
 
         public int CountryID { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        // public virtual ICollection<City> City { get; set; }
 
         public virtual Country Country { get; set; }
     }
