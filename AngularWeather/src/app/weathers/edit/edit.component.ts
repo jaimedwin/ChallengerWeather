@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Weather } from '../weather';
 import { WeathersService } from '../weathers.service';
 
@@ -13,33 +14,15 @@ export class EditComponent implements OnInit {
 
   form!: FormGroup
 
-  weather: Weather = {
-    "ID": 0,
-    "Precipitation": 0,
-    "Humidity": 0,
-    "Wind": 0,
-    "Date": "",
-    "CityID": 0,
-    "Status": false,
-    "UpdateAt": "",
-    "CreateAt": "",
-    "DeleteAt": "",
-    "UserID": 0,
-    "City": {
-      "ID": 0,
-      "Name": ""
-    },
-    "User": {
-      "Username": ""
-    }
-  }
+  weather!: Weather
 
   private weatherId: string | null = "";
 
   constructor(
     public weathersService: WeathersService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public authService : AuthService
   ) {
     this.form = new FormGroup({
       Precipitation: new FormControl('', Validators.required),

@@ -10,15 +10,38 @@ export interface Weather {
     "CreateAt": string,
     "DeleteAt": string,
     "UserID": number,
-    "City": City,
-    "User": ViewUser
+    "City": {
+        "ID": number,
+        "Name": string,
+        "StateID": number,
+    },
+    "User": {
+        "ID": number,
+        "Username": string,
+        "Email": string,
+        "Password": string,
+    }
 }
 
-interface City {
+export interface WeatherUpdate {
     "ID": number,
-    "Name": string
+    "Precipitation": number,
+    "Humidity": number,
+    "Wind": number,
+    "Date": string,
+    "CityID": number,
+    "UserID": number,
+    "Status": boolean,
+    "UpdateAt": string,
+    "CreateAt": string,
+    "DeleteAt": string
 }
 
-interface ViewUser {
-    "Username": string
+export interface WeatherCreate {
+    "Precipitation": number,
+    "Humidity": number,
+    "Wind": number,
+    "Date": string,
+    "CityID": number,
+    "UserID": number
 }

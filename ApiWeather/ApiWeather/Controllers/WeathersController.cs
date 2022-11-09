@@ -15,7 +15,6 @@ using ApiWeather.Models.Request;
 namespace ApiWeather.Controllers
 {
     [Authorize]
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class WeathersController : ApiController
     {
         private DB db = new DB();

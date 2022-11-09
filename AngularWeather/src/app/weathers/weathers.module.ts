@@ -7,19 +7,22 @@ import { DetailsComponent } from './details/details.component';
 import { ListComponent } from './list/list.component';
 import { EditComponent } from './edit/edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from '../utils/authconfig.interceptor';
 
 @NgModule({
   declarations: [
     ListComponent,
     CreateComponent,
     DetailsComponent,
-    EditComponent,
+    EditComponent
   ],
   imports: [
     CommonModule,
-    WeathersRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    WeathersRoutingModule
   ]
 })
 export class WeathersModule { }

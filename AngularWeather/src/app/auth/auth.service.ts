@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UserLogin, UserResponse } from './user';
+import { UserLogin, UserRegister, UserResponse } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +17,32 @@ export class AuthService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
-    }),
-    observe: "response" as 'body'
+    })
   }
+  router: any;
   
   constructor(private httpCLient : HttpClient) { }
 
-  login(user: UserLogin): Observable<UserResponse> {
-    return this.httpCLient.post<UserResponse>(this.api + 'login', user, this.httpOptions)
+  login(userLogin: UserLogin): Observable<UserResponse> {
+    return this.httpCLient.post<UserResponse>(this.api + 'login', userLogin, this.httpOptions)
+  }
+
+  getToken() {
+    return localStorage.getItem('access_token');
+  }
+
+  logout() {
+    let removeToken = localStorage.removeItem('access_token')
+    return removeToken == null
+    //if (removeToken == null) { this.router.navigateByUrl('login'); }
+  }
+
+  register(userRegister: UserRegister): Observable<UserLogin> {
+    return this.httpCLient.post<UserLogin>(this.api + 'users', userRegister, this.httpOptions)
+  }
+
+  get isLoggedIn(): boolean {
+    let authToken = localStorage.getItem('access_token')
+    return authToken == null ? false : true
   }
 }

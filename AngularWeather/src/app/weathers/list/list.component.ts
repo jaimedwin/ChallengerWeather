@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Weather } from '../weather';
 import { WeathersService } from '../weathers.service';
 
@@ -11,18 +12,26 @@ export class ListComponent implements OnInit {
 
   weathers: Weather[] = [];
 
-  constructor(private weathersService: WeathersService) { }
+  constructor(
+    private weathersService: WeathersService,
+    public authService: AuthService) { }
 
   ngOnInit(): void {
     this.getWeathers()
   }
 
-  getWeathers() {
-    this.weathersService.getAll().subscribe(res => this.weathers = res)
+  async getWeathers() {
+    this.weathersService.getAll().subscribe(res => {
+      if (res != null) {
+        this.weathers = res
+        console.log(res)
+      }
+    })
   }
 
   deleteWeather(id: number) {
-    this.weathersService.delete(id);
+    this.weathersService.delete(id).subscribe()
+    window.location.reload();
   }
 
 }

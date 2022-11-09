@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Weather } from '../weather';
 import { WeathersService } from '../weathers.service';
 
@@ -10,32 +11,14 @@ import { WeathersService } from '../weathers.service';
 })
 export class DetailsComponent implements OnInit {
 
-  weather: Weather = {
-    "ID": 0,
-    "Precipitation": 0,
-    "Humidity": 0,
-    "Wind": 0,
-    "Date": "",
-    "CityID": 0,
-    "Status": false,
-    "UpdateAt": "",
-    "CreateAt": "",
-    "DeleteAt": "",
-    "UserID": 0,
-    "City": {
-      "ID": 0,
-      "Name": ""
-    },
-    "User": {
-      "Username": ""
-    }
-  }
+  weather!: Weather
 
   private weatherId: string | null = "";
 
   constructor(
     private route: ActivatedRoute,
-    private weathersService: WeathersService) { }
+    private weathersService: WeathersService,
+    public authService : AuthService) { }
 
   ngOnInit(): void {
     this.weatherId = this.route.snapshot.paramMap.get('weatherId')

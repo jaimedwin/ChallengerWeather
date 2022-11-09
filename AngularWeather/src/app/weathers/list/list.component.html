@@ -1,8 +1,10 @@
 <h1>Lista del componente clima</h1>
-<a href="#" routerLink="/weathers/create" class="btn btn-success mt-3 mb-2">Crear</a>
-<table class="table table-bordered">
+
+<a href="#" routerLink="/weathers/create" routerLinkActive="active" *ngIf="this.authService.isLoggedIn"
+  class="btn btn-success mt-3 mb-2">Crear</a>
+<table class="table">
   <thead>
-    <tr>
+    <tr class="center-aling">
       <th>#</th>
       <th>Precipitación (%)</th>
       <th>Humedad (%)</th>
@@ -13,23 +15,33 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let weather of weathers; let i = index">
+
+    <tr *ngFor="let weather of weathers; index as i">
       <td>{{ i }}</td>
       <td>{{ weather.Precipitation }}</td>
       <td>{{ weather.Humidity }}</td>
       <td>{{ weather.Wind }}</td>
       <td>{{ weather.Date }}</td>
-      <td>{{ weather.CityID }} - {{ weather.City.Name }}</td>
+      <td>{{ weather.City.ID }} - {{ weather.City.Name }}</td>
       <td>
+        <a href="#" role="button" 
+          *ngIf="this.authService.isLoggedIn"
+          [routerLink]="['/weathers/', weather.ID, 'view']"
+          routerLinkActive="active" 
+          class="btn btn-info me-1">Ver</a>
 
-        <a href="#" role="button" [routerLink]="['/weathers/', weather.ID, 'view']" class="btn btn-info me-1">Ver</a>
-
-        <a href="#" role="button" [routerLink]="['/weathers/', weather.ID, 'edit']"
+        <a href="#" role="button" 
+          *ngIf="this.authService.isLoggedIn"
+          [routerLink]="['/weathers/', weather.ID, 'edit']"
+          routerLinkActive="active" 
           class="btn btn-warning me-1">Editar</a>
 
-        <button type="button" (click)="deleteWeather(weather.ID)" class="btn btn-danger">Borrar</button>
-
+        <button type="button" (click)="deleteWeather(weather.ID)" 
+          *ngIf="this.authService.isLoggedIn"  
+          routerLinkActive="active" 
+          class="btn btn-danger">Borrar</button>
       </td>
+
     </tr>
   </tbody>
 </table>

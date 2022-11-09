@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 import { WeathersService } from '../weathers.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class CreateComponent {
 
   constructor(
     public weathersService: WeathersService,
-    private router: Router
+    private router: Router,
+    public authService : AuthService
   ) {
     this.form = new FormGroup({
       Precipitation: new FormControl('', Validators.required),
@@ -33,7 +35,9 @@ export class CreateComponent {
   submit() {
     this.weathersService.create(this.form.value).subscribe(res => {
       console.log('Weather created successfully!');
-      this.router.navigateByUrl('weathers/index');
+      this.router.navigateByUrl('weathers/index').then(() => {
+        window.location.reload();
+      });
     })
   }
 }

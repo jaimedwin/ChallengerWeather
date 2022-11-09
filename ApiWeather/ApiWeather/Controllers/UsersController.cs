@@ -10,11 +10,13 @@ using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Web.Helpers;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using ApiWeather.Models;
 
 namespace ApiWeather.Controllers
 {
+    [AllowAnonymous]
     public class UsersController : ApiController
     {
         private DB db = new DB();

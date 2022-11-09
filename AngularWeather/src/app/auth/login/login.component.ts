@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.authServices.login(this.formLogin.value).subscribe(res => {
       if (res != null) {
+        localStorage.setItem('access_token', res.Token);
         this.authServices.ID = res.ID
         this.authServices.Username = res.Username
         this.authServices.Token = res.Token
@@ -44,5 +45,9 @@ export class LoginComponent implements OnInit {
         }
       }
     })
+  }
+
+  logout() {
+    this.authServices.logout()
   }
 }
