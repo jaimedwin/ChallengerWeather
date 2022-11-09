@@ -1,0 +1,26 @@
+<h1>Iniciar sesión</h1>
+<form [formGroup]="formLogin" (ngSubmit)="login()">
+  <!-- Email input -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form2Example1">Nombre de usuario:</label>
+    <input formControlName="Username" type="email" id="form2Example1" class="form-control" />
+  </div>
+
+  <!-- Password input -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form2Example2">Contraseña:</label>
+    <input formControlName="Password" type="password" id="form2Example2" class="form-control" />
+  </div>
+
+  <div *ngIf="errorLogin" class="alert alert-danger">
+    <div>La Contraseña es incorrecta</div>
+  </div>
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary btn-block mb-4">Iniciar sesión</button>
+
+  <!-- Register buttons -->
+  <div class="text-center">
+    <p>¿No estás registrado? <a href="#" routerLink="/register">Registrar</a></p>
+  </div>
+</form>

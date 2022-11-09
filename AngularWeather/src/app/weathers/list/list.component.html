@@ -1,0 +1,35 @@
+<h1>Lista del componente clima</h1>
+<a href="#" routerLink="/weathers/create" class="btn btn-success mt-3 mb-2">Crear</a>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Precipitación (%)</th>
+      <th>Humedad (%)</th>
+      <th>Viento (km/h)</th>
+      <th>Fecha</th>
+      <th>Ciudad</th>
+      <th width="220px">Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let weather of weathers; let i = index">
+      <td>{{ i }}</td>
+      <td>{{ weather.Precipitation }}</td>
+      <td>{{ weather.Humidity }}</td>
+      <td>{{ weather.Wind }}</td>
+      <td>{{ weather.Date }}</td>
+      <td>{{ weather.CityID }} - {{ weather.City.Name }}</td>
+      <td>
+
+        <a href="#" role="button" [routerLink]="['/weathers/', weather.ID, 'view']" class="btn btn-info me-1">Ver</a>
+
+        <a href="#" role="button" [routerLink]="['/weathers/', weather.ID, 'edit']"
+          class="btn btn-warning me-1">Editar</a>
+
+        <button type="button" (click)="deleteWeather(weather.ID)" class="btn btn-danger">Borrar</button>
+
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -10,11 +10,13 @@ using System.Net.Http;
 using System.Threading;
 using System.Web.Helpers;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ApiWeather.Controllers
 {
     
     [AllowAnonymous]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LoginController : ApiController
     {
         private DB db = new DB();
@@ -43,7 +45,11 @@ namespace ApiWeather.Controllers
             if (isCredentialValid)
             {
                 var token = TokenGenerator.GenerateTokenJwt(login.Username);
-                return Ok(token);
+                return Ok( new {
+                    ID = user.ID,
+                    Username = user.Username,
+                    Token = token
+                });
             }
             else
             {

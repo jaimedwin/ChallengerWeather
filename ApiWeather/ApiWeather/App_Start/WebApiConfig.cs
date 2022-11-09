@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Web.Http;
 
 namespace ApiWeather
@@ -11,11 +12,12 @@ namespace ApiWeather
         public static void Register(HttpConfiguration config)
         {
             // Configuración y servicios de Web API
+            config.EnableCors();
 
             // Rutas de Web API
             config.MapHttpAttributeRoutes();
 
-            config.MessageHandlers.Add(new TokenValidationHandler());
+            //config.MessageHandlers.Add(new TokenValidationHandler());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

@@ -1,0 +1,40 @@
+<h1>Detalles del clima</h1>
+<a href="#" routerLink="/weathers/index" class="btn btn-secondary mt-3 mb-2">Ir atras</a>
+<table class="table table-bordered">
+  <tr>
+    <th>ID</th>
+    <td>{{ weather.ID }}</td>
+  </tr>
+  <tr>
+    <th>Precipitación (%)</th>
+    <td>{{ weather.Precipitation }}</td>
+  </tr>
+  <tr>
+    <th>Humedad (%)</th>
+    <td>{{ weather.Humidity }}</td>
+  </tr>
+  <tr>
+    <th>Viento (km/h)</th>
+    <td>{{ weather.Wind }}</td>
+  </tr>
+  <tr>
+    <th>Fecha</th>
+    <td>{{ weather.Date }}</td>
+  </tr>
+  <tr>
+    <th>Ciudad</th>
+    <td>{{ weather.CityID }} - {{ weather.City.Name }}</td>
+  </tr>
+  <tr>
+    <th>Creado</th>
+    <td>{{ weather.CreateAt }}</td>
+  </tr>
+  <tr>
+    <th>Actualizado</th>
+    <td>{{ weather.UpdateAt }}</td>
+  </tr>
+  <tr>
+    <th>Usuario</th>
+    <td>{{ weather.User.Username }}</td>
+  </tr>
+</table>

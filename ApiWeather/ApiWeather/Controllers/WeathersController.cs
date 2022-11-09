@@ -7,12 +7,15 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using ApiWeather.Models;
 using ApiWeather.Models.Request;
 
 namespace ApiWeather.Controllers
 {
+    [Authorize]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class WeathersController : ApiController
     {
         private DB db = new DB();
@@ -93,7 +96,15 @@ namespace ApiWeather.Controllers
             weather.Status = true;
 
             db.Weather.Add(weather);
-            db.SaveChanges();
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                return StatusCode(HttpStatusCode.NoContent);
+            }
 
             return CreatedAtRoute("DefaultApi", new { id = weather.ID }, weather);
         }
